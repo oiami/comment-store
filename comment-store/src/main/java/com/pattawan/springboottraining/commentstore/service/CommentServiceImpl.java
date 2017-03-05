@@ -2,6 +2,8 @@ package com.pattawan.springboottraining.commentstore.service;
 
 
 import com.pattawan.springboottraining.model.CommentModel;
+import com.pattawan.springboottraining.spamdetection.SpamDetector;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,8 +16,8 @@ public class CommentServiceImpl implements CommentService {
     @Autowired //tell spring to auto wire this field
     private CommentModelRepository repository;
 
-//    @Autowired
-//    private SpamDetector spamDetector;
+    @Autowired
+    private SpamDetector spamDetector;
 
     @Override
     public String put(CommentModel model) throws IOException {
