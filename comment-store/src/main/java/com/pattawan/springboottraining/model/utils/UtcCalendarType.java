@@ -14,14 +14,14 @@ import java.util.TimeZone;
  * Hibernate column type for Calendars (using UTC time stamp)
  */
 public class UtcCalendarType extends AbstractSingleColumnStandardBasicType<Calendar> implements VersionType<Calendar>{
-    private static final UtcCalendarType INSTANCE = new UtcCalendarType();
+    public static final UtcCalendarType INSTANCE = new UtcCalendarType();
 
     private static final TimeZone UTC = TimeZone.getTimeZone("UTC");
 
     /*
     * Default constructor
     */
-    private UtcCalendarType() {
+    public UtcCalendarType() {
         super(UtcTimestampTypeDescriptor.INSTANCE, CalendarTypeDescriptor.INSTANCE);
     }
 
