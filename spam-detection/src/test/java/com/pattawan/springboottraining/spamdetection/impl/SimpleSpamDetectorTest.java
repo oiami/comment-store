@@ -1,4 +1,4 @@
-package com.pattawan.springboottraining.spamdetection.impl.fs;
+package com.pattawan.springboottraining.spamdetection.impl;
 
 import com.pattawan.springboottraining.spamdetection.SpamDetector;
 import org.junit.Test;

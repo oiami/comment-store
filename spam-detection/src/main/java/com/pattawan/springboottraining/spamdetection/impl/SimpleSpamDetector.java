@@ -1,4 +1,4 @@
-package com.pattawan.springboottraining.spamdetection.impl.fs;
+package com.pattawan.springboottraining.spamdetection.impl;
 
 import com.pattawan.springboottraining.spamdetection.SpamDetector;
 
@@ -14,7 +14,7 @@ import org.apache.commons.io.IOUtils;
  * Simple spam detector - checks for unwanted words.
  */
 public class SimpleSpamDetector implements SpamDetector {
-    public List<String> spamWords = new ArrayList<String>();
+    private List<String> spamWords = new ArrayList<String>();
 
     public SimpleSpamDetector(String filename) throws IOException {
         FileInputStream fis = new FileInputStream(new File(filename));
