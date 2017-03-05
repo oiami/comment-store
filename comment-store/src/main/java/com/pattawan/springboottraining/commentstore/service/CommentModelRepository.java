@@ -9,7 +9,7 @@ import java.util.List;
 public interface CommentModelRepository extends CrudRepository<CommentModel, String>{
 
 //    @Query("Select a from CommentModel a where a.pageID = ?1")
-    List<CommentModel> findByPageID(String pageID);
+    List<CommentModel> findByPageId(String pageId);
 
     List<CommentModel> findByPageIdAndSpamIsTrue(String pageId);
 }

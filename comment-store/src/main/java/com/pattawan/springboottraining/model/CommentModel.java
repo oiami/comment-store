@@ -2,13 +2,22 @@ package com.pattawan.springboottraining.model;
 
 
 import com.pattawan.springboottraining.model.utils.UtcCalendarType;
+import java.io.Serializable;
+import java.util.Calendar;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Index;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.persistence.Version;
+
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
 import org.hibernate.annotations.TypeDefs;
-
-import java.io.Serializable;
-import java.util.Calendar;
-import javax.persistence.*;
 
 @Entity  //tells Hibernate and Spring that this is our Entity class
 @Table(
@@ -20,10 +29,10 @@ import javax.persistence.*;
                 )
         }
 )
-//defines a table name and sets an index on the pageID, we will query later on it
+//defines a table name and sets an index on the pageId, we will query later on it
 
 @TypeDefs({
-        @TypeDef(name = "CalendarUTC",
+        @TypeDef(name = "calendarUTC",
                 typeClass = UtcCalendarType.class,
                 defaultForType = Calendar.class)
 })
@@ -48,7 +57,7 @@ public class CommentModel implements Serializable {
     private Calendar creationDate;
 
     @Column(length = 32)
-    private String pageID;
+    private String pageId;
 
     @Column(length = 32)
     private String username;
