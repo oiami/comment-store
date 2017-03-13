@@ -54,6 +54,10 @@ public class CommentModel implements Serializable {
 
     @Temporal(TemporalType.TIMESTAMP)
     @Type(type = "calendarUTC")
+    private Calendar lastModificationDate;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Type(type = "calendarUTC")
     private Calendar creationDate;
 
     @Column(length = 32)
@@ -67,4 +71,106 @@ public class CommentModel implements Serializable {
 
     @Column
     private boolean spam;
+
+    public boolean isSpam() {
+        return spam;
+    }
+
+    public void setSpam(boolean spam) {
+        this.spam = spam;
+    }
+
+    public String getEmailAddress() {
+        return emailAddress;
+    }
+
+    public void setEmailAddress(String emailAddress) {
+        this.emailAddress = emailAddress;
+    }
+
+    @Column(columnDefinition = "TEXT")
+    private String comment;
+
+    public boolean equal(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof CommentModel)) {
+            return false;
+        }
+
+        CommentModel other = (CommentModel) o;
+
+        // if the id is missing, return false
+        if (id == null) {
+            return false;
+        }
+
+        // equivalence by id
+        return id.equals(other.getId());
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public Calendar getCreationDate() {
+        return creationDate;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public Calendar getLastModificationDate() {
+        return getLastModificationDate();
+    }
+
+    public String getPageId() {
+        return pageId;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public Integer getVersion() {
+        return version;
+    }
+
+    public int hashCode() {
+        if (id != null) {
+            return id.hashCode();
+        } else {
+            return super.hashCode();
+        }
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
+    public void setCreationDate(Calendar creationDate) {
+        this.creationDate = creationDate;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setLastModificationDate(Calendar lastModificationDate) {
+        this.lastModificationDate = lastModificationDate;
+    }
+
+    public void setPageId(String pageId) {
+        this.pageId = pageId;
+    }
+
+    public void setVersion(Integer version) {
+        this.version = version;
+    }
+
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this);
+    }
 }
