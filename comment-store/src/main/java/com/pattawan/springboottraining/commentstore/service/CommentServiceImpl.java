@@ -31,7 +31,7 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public CommentModel get(String id) {
-        return null;
+        return repository.findOne(id);
     }
 
     @Override
