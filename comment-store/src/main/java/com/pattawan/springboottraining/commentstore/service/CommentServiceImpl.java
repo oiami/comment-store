@@ -6,6 +6,7 @@ import com.pattawan.springboottraining.spamdetection.SpamDetector;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import java.io.IOException;
@@ -23,6 +24,7 @@ public class CommentServiceImpl implements CommentService {
     private SpamDetector spamDetector;
 
     @Override
+    @Transactional
     public String put(CommentModel model) throws IOException {
         if (StringUtils.isEmpty(model.getId())) {
             model.setId(UUID.randomUUID().toString());
