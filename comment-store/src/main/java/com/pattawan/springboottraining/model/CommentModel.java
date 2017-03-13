@@ -166,6 +166,10 @@ public class CommentModel implements Serializable {
         this.pageId = pageId;
     }
 
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     public void setVersion(Integer version) {
         this.version = version;
     }
