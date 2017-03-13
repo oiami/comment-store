@@ -6,9 +6,12 @@ import com.pattawan.springboottraining.spamdetection.SpamDetector;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.io.IOException;
+import java.util.Calendar;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class CommentServiceImpl implements CommentService {
@@ -21,7 +24,28 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public String put(CommentModel model) throws IOException {
-        return null;
+        if (StringUtils.isEmpty(model.getId())) {
+            model.setId(UUID.randomUUID().toString());
+        }
+        if(spamDetector.containsSpam(model.getUsername()) ||
+            spamDetector.containsSpam(model.getEmailAddress()) ||
+                spamDetector.containsSpam(model.getComment())) {
+            model.setSpam(true);
+        }
+
+        final CommentModel dbModel = get(model.getId());
+        if (dbModel != null) {
+            dbModel.setUsername(model.getUsername());
+            dbModel.setComment(model.getComment());
+            dbModel.setLastModificationDate(Calendar.getInstance());
+            repository.save(dbModel);
+        }
+        else {
+            model.setCreationDate(Calendar.getInstance());
+            model.setLastModificationDate(Calendar.getInstance());
+            repository.save(model);
+        }
+        return model.getId();
     }
 
     @Override
